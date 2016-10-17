@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Add User</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				$("#contact_card").click(function(){
+					alert('click!');
+					console.log("click");
+					$(this).children('.contact_name').hide();
+					$(this).children('.contact_description').show();
+				});
+
+				$("form").submit(function(){
+					$("#display_cards").append('<div class="contact_card">' +
+							'<p class="contact_name show user_name">' + $("#first_name").val() + ' ' + $("#last_name").val() +'</p>' +
+							'<p class="contact_name show">Click for description!</p>' +
+							'<p class="contact_description hide">' + $("#description").val() + '</p>' +
+						'</div>')
+					return false;
+				});
+
+			});
+		</script>
+		<style>
+			#enter_cards{
+				display: inline-block;
+				width: 300px;			
+			}
+				#description{
+					width: 225px;
+					height: 50px;
+
+				}
+			#display_cards{
+				display: inline-block;
+				width: 300px;
+				vertical-align: top;				
+			}
+				.contact_card{
+					display: block;
+					border: 1px solid black;
+					vertical-align: top;
+					margin: 5px;
+				}
+					.contact_name{
+						text-align: center;
+					}
+					.user_name{
+						font-size: 30px;
+						font-weight: bold;
+					}
+					.show{
+						display: block;
+					}
+					.hide{
+						display: none;
+					}
+		</style>
+	</head>
+	<body>
+		<div id="enter_cards">
+			<form id="form_contact">
+				<p>First Name: <input type="text" id="first_name" value="First Name"></p>	
+				<p>Last Name: <input type="text" id="last_name" value="Last Name"></p>	
+				<p>Description:</p>
+				<p><input type="text" id="description" value="Enter a bit about you here!"></p>	
+				<button id="btn_add_user">Add User</button>
+			</form>
+		</div>
+		<div id="display_cards">
+			<div id="test_card" class="contact_card">
+				<p class="contact_name show user_name">Litton Chen</p>
+				<p class="contact_name show">Click for description!</p>
+				<p class="contact_description hide">Learning HTML, CSS and jQuery!</p>
+			</div>
+		</div>
+	</body>
+</html>
