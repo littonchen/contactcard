@@ -2,26 +2,28 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Add User</title>
+		<title>Contact Cards</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 		<script>
 			$(document).ready(function() {
-				$("#contact_card").click(function(){
-					alert('click!');
-					console.log("click");
-					$(this).children('.contact_name').hide();
-					$(this).children('.contact_description').show();
-				});
-
-				$("form").submit(function(){
+				$('form').submit(function(){
 					$("#display_cards").append('<div class="contact_card">' +
-							'<p class="contact_name show user_name">' + $("#first_name").val() + ' ' + $("#last_name").val() +'</p>' +
-							'<p class="contact_name show">Click for description!</p>' +
-							'<p class="contact_description hide">' + $("#description").val() + '</p>' +
+							'<p class="contact_name user_name" style="display: block;">' + $("#first_name").val() + ' ' + $("#last_name").val() + '</p>' +
+							'<p class="contact_name" style="display: block;">Click for description!</p>' +
+							'<p class="contact_description" style="display: none;">' + $("#description").val() + '</p>' +
 						'</div>')
 					return false;
 				});
 
+				$(document).on('click', '.contact_card', function(){
+					if($(this).children('.contact_name').is(':visible')){
+						$(this).children('.contact_name').hide();
+						$(this).children('.contact_description').show();
+					}else{
+						$(this).children('.contact_name').show();
+						$(this).children('.contact_description').hide();
+					}
+				});
 			});
 		</script>
 		<style>
@@ -43,20 +45,15 @@
 					display: block;
 					border: 1px solid black;
 					vertical-align: top;
+					text-align: center;
+					padding: 5px;
+					width: 290px;
+					height: 150px;
 					margin: 5px;
 				}
-					.contact_name{
-						text-align: center;
-					}
 					.user_name{
 						font-size: 30px;
 						font-weight: bold;
-					}
-					.show{
-						display: block;
-					}
-					.hide{
-						display: none;
 					}
 		</style>
 	</head>
@@ -71,10 +68,10 @@
 			</form>
 		</div>
 		<div id="display_cards">
-			<div id="test_card" class="contact_card">
-				<p class="contact_name show user_name">Litton Chen</p>
-				<p class="contact_name show">Click for description!</p>
-				<p class="contact_description hide">Learning HTML, CSS and jQuery!</p>
+			<div class="contact_card">
+				<p class="contact_name user_name" style="display: block;">Litton Chen</p>
+				<p class="contact_name" style="display: block;">Click for description!</p>
+				<p class="contact_description" style="display: none;">Learning HTML, CSS and jQuery!</p>
 			</div>
 		</div>
 	</body>
